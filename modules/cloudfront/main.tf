@@ -7,7 +7,7 @@
 resource "aws_cloudfront_distribution" "cloudfront" {
   origin {
     domain_name = var.s3-bucket.bucket_regional_domain_name
-    origin_id   = "S3-altschool-static-bucket"
+    origin_id   = var.s3-bucket.bucket
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
@@ -23,7 +23,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "S3-altschool-static-bucket"
+    target_origin_id = var.s3-bucket.bucket
 
     forwarded_values {
       query_string = false

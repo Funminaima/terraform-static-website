@@ -12,6 +12,7 @@ module "aws_cloudfront" {
   source="./modules/cloudfront"
   s3-bucket=module.aws_bucket.s3-bucket
   certificate_arn=module.certificate.acm_certificate.arn
+  domain_name=var.domain-name
   # s3_bucket_regional_domain_name = module.aws_bucket.bucket_regional_domain_name 
 
 }
